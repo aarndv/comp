@@ -18,18 +18,18 @@ int main() {
     cin.tie(0);
 
     int N;
-    scanf("%d", &N);
-    vi v(N);
+    scanf("%d",&N);
+    vi v[N];
     for (auto &i : v) cin >> i;
     map<int,int> mp;
+
     int ans = 1e9;
 
     fi(i,0,N) {
-        if (mp.count(v[i])==0) 
-            mp[v[i]] = i;
+        if (mp.count(v[i]) == 0) mp[v[i]] = i;
         else {
             int diff = i - mp[v[i]] + 1;
-            ans = min(diff, ans);
+            ans = min(ans, diff);
             mp[v[i]] = i;
         }
     }
