@@ -17,25 +17,22 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    int N;
-    cin >> N;
-    vi v(N);    
-    for (auto &i : v) cin >> i;
-    map<int,int> mp;
+    int T, n, sum_b, sum_s;
+    cin >> T;
+    vi ans(T);
 
-    int ans = INT_MAX;
-
-    fi(i,0,N) {
-        if (mp.count(v[i]) == 0) {
-            mp[v[i]] = i;
+    fi(i,0,T) {
+        sum_b=0; sum_s=0;
+        cin >> n;
+        vi s(n);
+        for (auto &i : s) cin >> i;
+        sort(s.begin(),s.end(),greater<int>());
+        fi(j,0,n/2) {
+            sum_b+=s[j];
+            sum_s+=s[j+n/2];
         }
-        else {
-            int diff = i - mp[v[i]] + 1;
-            ans = min(ans, diff);
-            mp[v[i]] = i;
-        }
+        ans[i] = sum_b - sum_s;
     }
 
-    if (ans == INT_MAX) cout << -1;
-    else cout << ans; 
+    fi(i,0,T) cout << "Case #" << i+1 << ": " << ans[i] << endl;
 }

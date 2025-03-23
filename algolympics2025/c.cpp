@@ -17,25 +17,16 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    int N;
-    cin >> N;
-    vi v(N);    
-    for (auto &i : v) cin >> i;
-    map<int,int> mp;
-
-    int ans = INT_MAX;
-
-    fi(i,0,N) {
-        if (mp.count(v[i]) == 0) {
-            mp[v[i]] = i;
-        }
-        else {
-            int diff = i - mp[v[i]] + 1;
-            ans = min(ans, diff);
-            mp[v[i]] = i;
-        }
+    int T;
+    cin >> T;
+    vi ans(T);
+    
+    fi(i,0,T) {
+        ll N;
+        cin >> N;
+        if (N == 2) ans[i] = 1;
+        else ans[i] = 6;
     }
 
-    if (ans == INT_MAX) cout << -1;
-    else cout << ans; 
+    fi(i,0,T) cout << "Case #" << i + 1 << ": " << ans[i] << endl;
 }
